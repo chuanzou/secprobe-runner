@@ -1,0 +1,200 @@
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_35[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:93:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+   93 | bool audit_rule_35(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_36[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:94:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+   94 | bool audit_rule_36(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_37[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:95:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+   95 | bool audit_rule_37(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_38[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:96:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+   96 | bool audit_rule_38(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_39[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:97:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+   97 | bool audit_rule_39(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_40[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:98:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+   98 | bool audit_rule_40(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_41[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:99:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+   99 | bool audit_rule_41(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_42[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:100:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  100 | bool audit_rule_42(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_43[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:101:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  101 | bool audit_rule_43(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_44[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:102:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  102 | bool audit_rule_44(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_45[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:103:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  103 | bool audit_rule_45(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_46[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:104:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  104 | bool audit_rule_46(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_47[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:105:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  105 | bool audit_rule_47(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_48[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:106:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  106 | bool audit_rule_48(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_49[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:107:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  107 | bool audit_rule_49(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_50[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:108:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  108 | bool audit_rule_50(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_51[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:109:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  109 | bool audit_rule_51(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_52[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:110:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  110 | bool audit_rule_52(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_53[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:111:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  111 | bool audit_rule_53(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_54[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:112:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  112 | bool audit_rule_54(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_55[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:113:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  113 | bool audit_rule_55(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_56[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:114:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  114 | bool audit_rule_56(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_57[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:115:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  115 | bool audit_rule_57(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_58[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:116:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  116 | bool audit_rule_58(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_59[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:117:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  117 | bool audit_rule_59(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_60[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:118:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  118 | bool audit_rule_60(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_61[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:119:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  119 | bool audit_rule_61(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_62[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:120:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  120 | bool audit_rule_62(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_63[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:121:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  121 | bool audit_rule_63(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_64[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:122:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  122 | bool audit_rule_64(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_65[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:123:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  123 | bool audit_rule_65(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_66[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:124:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  124 | bool audit_rule_66(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_67[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:125:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  125 | bool audit_rule_67(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_68[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:126:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  126 | bool audit_rule_68(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_69[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:127:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  127 | bool audit_rule_69(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_70[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:128:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  128 | bool audit_rule_70(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_71[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:129:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  129 | bool audit_rule_71(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_72[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:130:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  130 | bool audit_rule_72(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_73[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:131:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  131 | bool audit_rule_73(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_74[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:132:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  132 | bool audit_rule_74(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_75[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:133:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  133 | bool audit_rule_75(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_76[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:134:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  134 | bool audit_rule_76(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_77[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:135:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  135 | bool audit_rule_77(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_78[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:136:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  136 | bool audit_rule_78(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kaudit_rule_79[m[K(uint64_t)[m[K’:
+[01m[Kquality_support.cpp:137:40:[m[K [01;35m[Kwarning: [m[Kself-comparison always evaluates to true [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-tautological-compare-Wtautological-compare]8;;[m[K]
+  137 | bool audit_rule_79(uint64_t x){return [32m[Kx[m[K[01;35m[K==[m[K[34m[Kx[m[K;}
+      |                                       [32m[K~[m[K[01;35m[K^~[m[K[34m[K~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kvalid_port_range[m[K(uint16_t)[m[K’:
+[01m[Kquality_support.cpp:161:61:[m[K [01;35m[Kwarning: [m[Kcomparison is always true due to limited range of data type [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-type-limits-Wtype-limits]8;;[m[K]
+  161 | bool valid_port_range(uint16_t port){return port>=1024&&[01;35m[Kport<=65535[m[K;}
+      |                                                         [01;35m[K~~~~^~~~~~~[m[K
+[01m[Kquality_support.cpp:[m[K In function ‘[01m[Kbool wg::internal::[01;32m[Kvalid_loopback_port[m[K(const std::string&, uint16_t)[m[K’:
+[01m[Kquality_support.cpp:162:107:[m[K [01;35m[Kwarning: [m[Kcomparison is always true due to limited range of data type [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-14.2.0/gcc/Warning-Options.html#index-Wno-type-limits-Wtype-limits]8;;[m[K]
+  162 | bool valid_loopback_port(const std::string& host,uint16_t port){return host=="127.0.0.1"&&port>=1024&&[01;35m[Kport<=65535[m[K;}
+      |                                                                                                       [01;35m[K~~~~^~~~~~~[m[K
+./unit_tests
+./write_guard_rpc --self-test
+[?2004h[01;32magent@6fe7be57cfd8[00m:[01;34m/app[00m$ ./sanitizer_tests >/tmp/san.out 2>&1; s=$?; python3 tests/test_api_contract.py >/tmp/api.out 2>&1; a=$?; echo "sanitizer_status=$s api_contract_status=$a"; if [ $s -ne 0 ]; then cat /tmp/san.out; fi; if [ $a -ne 0 ]; then cat /tmp/api.out; fi; wc -l decoder.cpp arithmetic.cpp mutation.cpp readback.cpp unit_tests.cpp
+[?2004l
+sanitizer_status=0 api_contract_status=0
+   46 decoder.cpp
+   59 arithmetic.cpp
+   53 mutation.cpp
+   30 readback.cpp
+  144 unit_tests.cpp
+  332 total
+[?2004h[01;32magent@6fe7be57cfd8[00m:[01;34m/app[00m$ 

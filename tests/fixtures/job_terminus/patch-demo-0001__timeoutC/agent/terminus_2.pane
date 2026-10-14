@@ -1,0 +1,200 @@
+}
+[?2004h[01;32magent@1e1f4732de2e[00m:[01;34m/app[00m$ python3 - <<'PY'
+[?2004l
+[?2004h> from pathlib import Path
+[?2004l
+[?2004h> p=Path('internal/audit/audit.go');s=p.read_text()
+[?2004l
+[?2004h> s=s.replace('"sort"','"encoding/base64"\n\t"encoding/hex"\n\t"sort"')
+[?2004l
+[?2004h> start=s.index('func Assess')
+[?2004l
+[?2004h> end=s.index('\nfunc Validate',start)
+[?2004l
+[?2004h> new=r'''func Assess(a store.Asset, p policy.Policy) Finding {
+[?2004l
+[?2004h>  e:=a.Envelope;q:=e.KDF;q.Algorithm=e.Algorithm;q.KeyBits=e.KeyBits
+[?2004l
+[?2004h>  reasons:=[]string{}
+[?2004l
+[?2004h>  salt,err:=hex.DecodeString(e.Salt);if err!=nil {reasons=append(reasons,"salt_malformed");q.SaltLen=0}else{q.SaltLen=len(salt)}
+[?2004l
+[?2004h>  nonce,err:=base64.RawStdEncoding.Strict().DecodeString(e.Nonce);if err!=nil {reasons=append(reasons,"nonce_malformed");q.NonceLen=0}else{q.NonceLen=len(nonce)}
+[?2004l
+[?2004h>  if q.NonceLen!=12 {reasons=append(reasons,"nonce_length")}
+[?2004l
+[?2004h>  if e.Tag!="gcm" {reasons=append(reasons,"integrity_missing")}
+[?2004l
+[?2004h>  if e.Record!=a.ID {reasons=append(reasons,"origin_mismatch")}
+[?2004l
+[?2004h>  if e.Version<1 {reasons=append(reasons,"version_invalid")}
+[?2004l
+[?2004h>  if e.Revision<1||e.Revision>p.Revision {reasons=append(reasons,"policy_revision_invalid")}
+[?2004l
+[?2004h>  r:=policy.Evaluate(p,q,policy.PasswordInfo{Length:16,Diversity:4})
+[?2004l
+[?2004h>  reasons=append(reasons,r.Reasons...)
+[?2004l
+[?2004h>  sort.Strings(reasons);out:=reasons[:0];for _,x:=range reasons{if len(out)==0||out[len(out)-1]!=x{out=append(out,x)}}
+[?2004l
+[?2004h>  return Finding{a.ID,a.Class,r.Accepted&&len(out)==0,out}
+[?2004l
+[?2004h> }'''
+[?2004l
+[?2004h> s=s[:start]+new+s[end:];p.write_text(s)
+[?2004l
+[?2004h> PY
+[?2004l
+[?2004h[01;32magent@1e1f4732de2e[00m:[01;34m/app[00m$ cat > internal/audit/security_test.go <<'EOF'
+[?2004l
+[?2004h> package audit
+[?2004l
+[?2004h> import (
+[?2004l
+[?2004h>  "testing"
+[?2004l
+[?2004h>  "vaultledger/internal/envelope"
+[?2004l
+[?2004h>  "vaultledger/internal/policy"
+[?2004l
+[?2004h>  "vaultledger/internal/store"
+[?2004l
+[?2004h> )
+[?2004l
+[?2004h> func validAsset() store.Asset { return store.Asset{Class:"current",ID:"x",Envelope:envelope.Envelope{Algorithm:"AES-256-GCM",KeyBits:256,KDF:policy.Params{KDFFamily:"HMAC-SHA256-MEMORY",KDFVersion:1,Iterations:12000,Memory:64,Parallel:2,SaltLen:16},Salt:"00112233445566778899aabbccddeeff",Nonce:"AgICAgICAgICAgIC",Ciphertext:"AAAAAAAAAAAAAAAAAAAAAA",Tag:"gcm",Record:"x",Version:1,Revision:1}} }
+[?2004l
+[?2004h> func TestAssessDoesNotTrustNonceOrSaltLabels(t *testing.T){a:=validAsset();a.Envelope.Nonce="bad";if Assess(a,policy.Default()).Accepted{t.Fatal("malformed nonce accepted")};a=validAsset();a.Envelope.Salt="not-hex";if Assess(a,policy.Default()).Accepted{t.Fatal("malformed salt accepted")}}
+[?2004l
+[?2004h> func TestAssessRequiresAuthenticationAndOrigin(t *testing.T){a:=validAsset();a.Envelope.Tag="cbc";if Assess(a,policy.Default()).Accepted{t.Fatal("unauthenticated envelope accepted")};a=validAsset();a.Envelope.Record="other";if Assess(a,policy.Default()).Accepted{t.Fatal("wrong origin accepted")}}
+[?2004l
+[?2004h> EOF
+[?2004l
+[?2004h[01;32magent@1e1f4732de2e[00m:[01;34m/app[00m$ gofmt -w internal/audit/audit.go internal/audit/security_test.go
+[?2004l
+[?2004h[01;32magent@1e1f4732de2e[00m:[01;34m/app[00m$ go test ./internal/audit ./internal/migrate
+[?2004l
+ok  	vaultledger/internal/audit	0.001s
+ok  	vaultledger/internal/migrate	0.001s
+[?2004h[01;32magent@1e1f4732de2e[00m:[01;34m/app[00m$ go test ./...
+[?2004l
+?   	vaultledger/cmd/vault_cli	[no test files]
+?   	vaultledger/internal/app	[no test files]
+ok  	vaultledger/internal/audit	(cached)
+ok  	vaultledger/internal/derive	(cached)
+ok  	vaultledger/internal/envelope	(cached)
+ok  	vaultledger/internal/migrate	(cached)
+ok  	vaultledger/internal/policy	(cached)
+?   	vaultledger/internal/protocol	[no test files]
+ok  	vaultledger/internal/store	(cached)
+[?2004h[01;32magent@1e1f4732de2e[00m:[01;34m/app[00m$ cat internal/policy/limits.go && sed -n '25,65p' internal/store/store.go
+[?2004l
+package policy
+
+import "fmt"
+
+func CheckRevision(g, w int) error {
+	if g < 1 || g < w {
+		return fmt.Errorf("policy_revision_rollback")
+	}
+	return nil
+}
+func CheckProfile(s string) error {
+	if s != "standard" && s != "long_lived" {
+		return fmt.Errorf("profile_unknown")
+	}
+	return nil
+}
+func RequiredTarget(s string) int {
+	if s == "long_lived" {
+		return 192
+	}
+	return 128
+}
+func Compatible(a, b Policy) bool {
+	return a.Algorithm == b.Algorithm && a.MinKeyBits >= b.MinKeyBits && a.MinIterations >= b.MinIterations && a.MinMemory >= b.MinMemory
+}
+func Clamp(p Policy) Policy {
+	if p.MinKeyBits < 256 {
+		p.MinKeyBits = 256
+	}
+	if p.MinSalt < 16 {
+		p.MinSalt = 16
+	}
+	if p.MinIterations < 12000 {
+		p.MinIterations = 12000
+	}
+	if p.MinMemory < 64 {
+		p.MinMemory = 64
+	}
+	if p.MinParallel < 2 {
+		p.MinParallel = 2
+	}
+	return p
+}
+func Explain(p Params) []string {
+	r := []string{}
+	if p.Algorithm != "AES-256-GCM" {
+		r = append(r, "algorithm")
+	}
+	if p.KeyBits < 256 {
+		r = append(r, "key_bits")
+	}
+	if p.SaltLen < 16 {
+		r = append(r, "salt")
+	}
+	if p.NonceLen != 12 {
+		r = append(r, "nonce")
+	}
+	return r
+}
+func StrengthFloor(p Policy) int {
+	v := p.MinKeyBits / 2
+	if p.Target > v {
+		v = p.Target
+	}
+	return v
+}
+func IsLegacy(s string) bool     { return s == "AES-CBC" || s == "3DES" || s == "ECB" }
+func PolicyName(p Policy) string { return fmt.Sprintf("%s-r%d", p.Profile, p.Revision) }
+}
+
+func safeRoot(root string) (string, error) {
+	if root == "" {
+		return "", fmt.Errorf("invalid_root")
+	}
+	a, e := filepath.Abs(root)
+	if e != nil {
+		return "", e
+	}
+	return filepath.Clean(a), nil
+}
+func LoadVault(root string) (VaultState, error) {
+	r, e := safeRoot(root)
+	if e != nil {
+		return VaultState{}, e
+	}
+	if e = os.MkdirAll(r, 0700); e != nil {
+		return VaultState{}, e
+	}
+	b, e := os.ReadFile(filepath.Join(r, "metadata.json"))
+	if os.IsNotExist(e) {
+		return VaultState{Root: r, Policy: policy.Default(), Markers: map[string]string{}}, nil
+	}
+	if e != nil {
+		return VaultState{}, e
+	}
+	var s VaultState
+	if e = json.Unmarshal(b, &s); e != nil {
+		return VaultState{}, fmt.Errorf("malformed_metadata")
+	}
+	if s.Markers == nil {
+		s.Markers = map[string]string{}
+	}
+	s.Root = r
+	s.Policy = policy.Clamp(s.Policy)
+	return s, nil
+}
+func SaveVault(s VaultState) error { return Save(s) }
+func Save(s VaultState) error {
+	if s.Root == "" {
+[?2004h[01;32magent@1e1f4732de2e[00m:[01;34m/app[00m$ 

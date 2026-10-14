@@ -1,0 +1,131 @@
+{
+  "id": "968eab0a-6fae-44e9-a532-5c25645a12b9",
+  "task_name": "cyber-agent-gym/cwe326-strength-ledger",
+  "trial_name": "patch-demo-0001__timeoutC",
+  "trial_uri": "file:///runner/harbor/job/patch-demo-0001__timeoutC",
+  "task_id": {
+    "path": "tasks/patch-demo-0001"
+  },
+  "source": "all153-sol-five",
+  "task_checksum": "fdaf778ce6423388914c9161cd8dc886a651acaf6dcfd56c5c8dc41568ab9d58",
+  "config": {
+    "task": {
+      "path": "tasks/patch-demo-0001",
+      "git_url": null,
+      "git_commit_id": null,
+      "name": null,
+      "ref": null,
+      "overwrite": false,
+      "download_dir": null,
+      "source": "all153-sol-five"
+    },
+    "trial_name": "patch-demo-0001__timeoutC",
+    "trials_dir": "harbor/job",
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent_timeout_multiplier": null,
+    "verifier_timeout_multiplier": null,
+    "agent_setup_timeout_multiplier": null,
+    "environment_build_timeout_multiplier": null,
+    "agent": {
+      "name": "terminus-2",
+      "import_path": null,
+      "model_name": "openai/gpt-5.6-sol",
+      "n_concurrent": null,
+      "concurrency_group": null,
+      "skills": [],
+      "override_timeout_sec": null,
+      "override_setup_timeout_sec": null,
+      "max_timeout_sec": null,
+      "resume_trajectory": false,
+      "load_trajectory": null,
+      "extra_allowed_hosts": [],
+      "kwargs": {
+        "reasoning_effort": "medium",
+        "max_turns": 100,
+        "use_responses_api": true
+      },
+      "mcp_servers": []
+    },
+    "environment": {
+      "type": "docker",
+      "import_path": null,
+      "force_build": false,
+      "delete": true,
+      "cpu_enforcement_policy": "auto",
+      "memory_enforcement_policy": "auto",
+      "override_cpus": null,
+      "override_memory_mb": null,
+      "override_storage_mb": null,
+      "override_gpus": null,
+      "override_tpu": null,
+      "mounts": null,
+      "extra_docker_compose": [],
+      "kwargs": {},
+      "extra_allowed_hosts": []
+    },
+    "verifier": {
+      "override_timeout_sec": null,
+      "max_timeout_sec": null,
+      "disable": false
+    },
+    "artifacts": [],
+    "extra_instruction_paths": [],
+    "job_id": "aab5c0a1-b940-472c-b809-011ea251f209"
+  },
+  "agent_info": {
+    "name": "terminus-2",
+    "version": "2.0.0",
+    "model_info": {
+      "name": "gpt-5.6-sol",
+      "provider": "openai"
+    }
+  },
+  "agent_result": {
+    "n_input_tokens": 618703,
+    "n_cache_tokens": 0,
+    "n_output_tokens": 29782,
+    "cost_usd": 1.1096328,
+    "rollout_details": [],
+    "metadata": {
+      "n_episodes": 33,
+      "api_request_times_msec": [
+        5492.142915725708,
+        8487.771987915039,
+        7077.7647495269775
+      ],
+      "summarization_count": 0
+    }
+  },
+  "verifier_result": {
+    "rewards": {
+      "reward": 1.0,
+      "score_100": 100.0
+    }
+  },
+  "exception_info": {
+    "exception_type": "AgentTimeoutError",
+    "exception_message": "Agent execution timed out after 7200.0 seconds",
+    "exception_traceback": "  raise TimeoutError from exc_val\nTimeoutError\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/Users/xluobd/Desktop/Agent/harbor-evaluation/.harbor-venv/lib/python3.12/site-packages/harbor/trial/single_step.py\", line 77, in _run_agent\n    await self._run_agent_phase(\n  File \"/Users/xluobd/Desktop/Agent/harbor-evaluation/.harbor-venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 459, in _run_agent_phase\n    raise AgentTimeoutError(\nharbor.trial.errors.AgentTimeoutError: Agent execution timed out after 7200.0 seconds\n",
+    "occurred_at": "2026-08-26T23:31:03.597522"
+  },
+  "started_at": "2026-08-27T01:30:54.738193Z",
+  "finished_at": "2026-08-27T03:31:21.693219Z",
+  "environment_setup": {
+    "started_at": "2026-08-27T01:30:54.741940Z",
+    "finished_at": "2026-08-27T01:30:58.000290Z"
+  },
+  "agent_setup": {
+    "started_at": "2026-08-27T01:30:58.000329Z",
+    "finished_at": "2026-08-27T01:31:03.459189Z"
+  },
+  "agent_execution": {
+    "started_at": "2026-08-27T01:31:03.459295Z",
+    "finished_at": "2026-08-27T03:31:03.590981Z"
+  },
+  "verifier": {
+    "started_at": "2026-08-27T03:31:03.956160Z",
+    "finished_at": "2026-08-27T03:31:10.766655Z"
+  },
+  "step_results": null
+}

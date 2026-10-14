@@ -1,0 +1,276 @@
+# Evaluate an agent on SecProbe tasks inside this repository's own GitHub Actions.
+# Dispatched by the SecProbe website (or `gh workflow run evaluate.yml ...`).
+#
+# Security notes
+#  * Inputs are validated by scripts/plan_matrix.py and only ever reach scripts through
+#    environment variables -- never interpolated into `run:` shell text.
+#  * Provider keys come from this repository's secrets and are only exposed to the
+#    steps that need them. GitHub masks secret values in logs; collect_result.py also
+#    redacts them from anything committed to the results branch.
+name: evaluate
+run-name: "evaluate · ${{ inputs.request_id }}"
+
+on:
+  workflow_dispatch:
+    inputs:
+      request_id:
+        description: "Unique request id, e.g. ev-20261014-a1b2c3"
+        required: true
+        type: string
+      tasks:
+        description: "Comma-separated task ids (<= 64) and/or generated:<request_id>"
+        required: true
+        type: string
+      agent:
+        description: "Harbor agent (terminus-2, mini-swe-agent, claude-code, codex, ...)"
+        required: true
+        type: string
+        default: terminus-2
+      model:
+        description: "LiteLLM-style provider/model, e.g. anthropic/claude-opus-4-8"
+        required: false
+        type: string
+        default: ""
+      agent_kwargs:
+        description: "Flat JSON object passed as --ak key=value"
+        required: false
+        type: string
+        default: "{}"
+      n_attempts:
+        description: "Attempts per task (1-5)"
+        required: false
+        type: string
+        default: "1"
+      max_parallel:
+        description: "Maximum concurrent task jobs"
+        required: false
+        type: string
+        default: "4"
+      dataset:
+        description: "Hugging Face dataset holding tasks/<id>.tar.gz"
+        required: false
+        type: string
+        default: xluobd/SecProbe-353
+      generated_repo:
+        description: "Public repo holding generated/<request_id>/bundle.tar.gz (for generated:<id> tasks)"
+        required: false
+        type: string
+        default: Xiaonan-debug/secprobe-generated
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: evaluate-${{ inputs.request_id }}
+  cancel-in-progress: false
+
+env:
+  PYTHONUNBUFFERED: "1"
+  HARBOR_VERSION: "0.20.0"
+
+jobs:
+  plan:
+    name: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      max_parallel: ${{ steps.plan.outputs.max_parallel }}
+      n_attempts: ${{ steps.plan.outputs.n_attempts }}
+      started_at: ${{ steps.plan.outputs.started_at }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Validate inputs
+        id: plan
+        env:
+          INPUT_REQUEST_ID: ${{ inputs.request_id }}
+          INPUT_TASKS: ${{ inputs.tasks }}
+          INPUT_AGENT: ${{ inputs.agent }}
+          INPUT_MODEL: ${{ inputs.model }}
+          INPUT_AGENT_KWARGS: ${{ inputs.agent_kwargs }}
+          INPUT_N_ATTEMPTS: ${{ inputs.n_attempts }}
+          INPUT_MAX_PARALLEL: ${{ inputs.max_parallel }}
+          INPUT_DATASET: ${{ inputs.dataset }}
+          INPUT_GENERATED_REPO: ${{ inputs.generated_repo }}
+        run: python scripts/plan_matrix.py evaluate
+
+  run:
+    name: "task · ${{ matrix.task }}"
+    needs: plan
+    runs-on: ubuntu-latest
+    # agent 7200 s + environment build 1200 s + verifier 600 s, plus setup headroom.
+    # Attempts of one task run concurrently (harbor -n = n_attempts).
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      max-parallel: ${{ fromJSON(needs.plan.outputs.max_parallel) }}
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    env:
+      TASK_REF: ${{ matrix.task }}
+      SLUG: ${{ matrix.slug }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - name: Free disk space
+        run: |
+          df -h /
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/.ghcup /usr/local/lib/android \
+            /opt/hostedtoolcache/CodeQL /usr/local/share/boost || true
+          df -h /
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install Harbor
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "harbor==${HARBOR_VERSION}"
+          harbor --version
+          docker version --format 'docker {{.Server.Version}}'
+
+      - name: Fetch task
+        id: fetch
+        env:
+          INPUT_DATASET: ${{ inputs.dataset }}
+          INPUT_GENERATED_REPO: ${{ inputs.generated_repo }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: python scripts/fetch_task.py "$TASK_REF" --dest "$RUNNER_TEMP/tasks"
+
+      - name: Run Harbor
+        id: harbor
+        if: steps.fetch.outcome == 'success'
+        env:
+          TASK_DIR: ${{ steps.fetch.outputs.task_dir }}
+          INPUT_AGENT: ${{ inputs.agent }}
+          INPUT_MODEL: ${{ inputs.model }}
+          INPUT_AGENT_KWARGS: ${{ inputs.agent_kwargs }}
+          INPUT_N_ATTEMPTS: ${{ needs.plan.outputs.n_attempts }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          MOONSHOT_API_KEY: ${{ secrets.MOONSHOT_API_KEY }}
+          ZAI_API_KEY: ${{ secrets.ZAI_API_KEY }}
+          DASHSCOPE_API_KEY: ${{ secrets.DASHSCOPE_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
+          TOGETHER_API_KEY: ${{ secrets.TOGETHER_API_KEY }}
+          TOGETHERAI_API_KEY: ${{ secrets.TOGETHER_API_KEY }}
+          FIREWORKS_API_KEY: ${{ secrets.FIREWORKS_API_KEY }}
+          FIREWORKS_AI_API_KEY: ${{ secrets.FIREWORKS_API_KEY }}
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: >-
+          python scripts/run_harbor.py
+          --task-dir "$TASK_DIR"
+          --jobs-dir "$RUNNER_TEMP/harbor"
+          --job-name "$SLUG"
+
+      - name: Collect result
+        if: always()
+        env:
+          TASK_DIR: ${{ steps.fetch.outputs.task_dir }}
+          INPUT_AGENT: ${{ inputs.agent }}
+          INPUT_MODEL: ${{ inputs.model }}
+          FETCH_OUTCOME: ${{ steps.fetch.outcome }}
+          # values are only used to redact keys from logs before publishing
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          MOONSHOT_API_KEY: ${{ secrets.MOONSHOT_API_KEY }}
+          ZAI_API_KEY: ${{ secrets.ZAI_API_KEY }}
+          DASHSCOPE_API_KEY: ${{ secrets.DASHSCOPE_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
+          TOGETHER_API_KEY: ${{ secrets.TOGETHER_API_KEY }}
+          FIREWORKS_API_KEY: ${{ secrets.FIREWORKS_API_KEY }}
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: >-
+          python scripts/collect_result.py
+          --job-dir "$RUNNER_TEMP/harbor/$SLUG"
+          --task-dir "${TASK_DIR:-$RUNNER_TEMP/tasks/$SLUG}"
+          --task-id "$TASK_REF"
+          --out "$RUNNER_TEMP/out/$SLUG.json"
+
+      - name: Upload task result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: result-${{ matrix.slug }}
+          path: ${{ runner.temp }}/out/${{ matrix.slug }}.json
+          retention-days: 7
+          if-no-files-found: warn
+
+      - name: Upload Harbor job directory
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: harbor-${{ matrix.slug }}
+          path: ${{ runner.temp }}/harbor
+          retention-days: 30
+          if-no-files-found: ignore
+
+  publish:
+    name: publish
+    needs: [plan, run]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Download task results
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          pattern: result-*
+          merge-multiple: true
+          path: ${{ runner.temp }}/results
+
+      - name: Aggregate
+        id: aggregate
+        env:
+          INPUT_REQUEST_ID: ${{ inputs.request_id }}
+          INPUT_TASKS: ${{ inputs.tasks }}
+          INPUT_AGENT: ${{ inputs.agent }}
+          INPUT_MODEL: ${{ inputs.model }}
+          INPUT_AGENT_KWARGS: ${{ inputs.agent_kwargs }}
+          INPUT_N_ATTEMPTS: ${{ inputs.n_attempts }}
+          INPUT_MAX_PARALLEL: ${{ inputs.max_parallel }}
+          INPUT_DATASET: ${{ inputs.dataset }}
+          INPUT_GENERATED_REPO: ${{ inputs.generated_repo }}
+          PLAN_RESULT: ${{ needs.plan.result }}
+          RUN_RESULT: ${{ needs.run.result }}
+          STARTED_AT: ${{ needs.plan.outputs.started_at }}
+        run: >-
+          python scripts/aggregate.py
+          --results-dir "$RUNNER_TEMP/results"
+          --out "$RUNNER_TEMP/staging"
+          --entry-out "$RUNNER_TEMP/index-entry.json"
+
+      - name: Commit to secprobe-results
+        if: steps.aggregate.outputs.publish == 'true'
+        env:
+          REQUEST_ID: ${{ steps.aggregate.outputs.request_id }}
+        run: >-
+          python scripts/publish.py --repo .
+          --staging "$RUNNER_TEMP/staging"
+          --message "results: $REQUEST_ID"
+          --upsert "results/index.json=$RUNNER_TEMP/index-entry.json"

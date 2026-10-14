@@ -1,0 +1,128 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /evaluation/grader/tests_hidden
+collecting ... collected 4042 items
+
+../evaluation/grader/tests_hidden/test_blackbox.py::test_build_offline PASSED [  0%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_blackbox_upload_service PASSED [  0%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_symbol_060 PASSED [  1%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_symbol_061 PASSED [  1%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_symbol_062 PASSED [  1%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_symbol_063 PASSED [  1%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_symbol_064 PASSED [  1%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_symbol_065 PASSED [  1%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_absent_000 PASSED [  1%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_absent_001 PASSED [  1%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_absent_002 PASSED [  1%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_absent_003 PASSED [  1%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_absent_004 PASSED [  1%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_absent_005 PASSED [  1%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_absent_006 PASSED [  1%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_family_00 PASSED [  1%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_family_01 PASSED [  1%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_family_02 PASSED [  1%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_family_03 PASSED [  1%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_family_04 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_family_05 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_family_06 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_family_07 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_family_08 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_family_09 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_family_10 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_family_11 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_family_12 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_family_13 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_00 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_01 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_02 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_03 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_04 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_05 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_06 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_07 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_08 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_09 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_10 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_11 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_12 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_13 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_14 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_15 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_16 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_17 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_18 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_19 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_20 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_21 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_22 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_23 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_24 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_25 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_26 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_27 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_28 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_29 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_30 PASSED [  2%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_31 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_32 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_33 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_34 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_35 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_36 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_37 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_38 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_39 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_40 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_41 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_42 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_43 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_44 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_45 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_46 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_47 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_48 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_49 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_50 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_51 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_52 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_53 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_54 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_55 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_56 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_57 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_58 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_59 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_60 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_61 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_62 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_63 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_depth_64 PASSED [  3%]
+../evaluation/grader/tests_hidden/test_blackbox.py::test_security_auth_00 FAILED [  3%]
+
+=================================== FAILURES ===================================
+____________________________ test_security_auth_00 _____________________________
+
+    def test_security_auth_00():
+>       _secure(r'p\.Tenant\s*==\s*u\.Tenant\s*&&\s*\(p\.User')
+
+/evaluation/grader/tests_hidden/test_blackbox.py:239: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+pattern = 'p\\.Tenant\\s*==\\s*u\\.Tenant\\s*&&\\s*\\(p\\.User'
+
+    def _secure(pattern):
+>       assert re.search(pattern, S())
+E       assert None
+E        +  where None = <function search at 0xe8afa4251ee0>('p\\.Tenant\\s*==\\s*u\\.Tenant\\s*&&\\s*\\(p\\.User', 'package relay\n\nimport (\n\t"context"\n\t"net"\n\t"net/http"\n\t"sync"\n)\n\ntype Servers struct {\n\tAPI, Processor *http.Server\n\tcloseOnce      sync.Once\n}\n\nfunc RunServers(c  [fixture-trimmed]
+E        +    where <function search at 0xe8afa4251ee0> = re.search
+E        +    and   'package relay\n\nimport (\n\t"context"\n\t"net"\n\t"net/http"\n\t"sync"\n)\n\ntype Servers struct {\n\tAPI, Processor *http.Server\n\tcloseOnce      sync.Once\n}\n\nfunc RunServers(c Config) (*Servers, error) {\n\tif e := c.Valid(); e != nil {\n\t\treturn nil, e\n\t}\n\tif e :=  [fixture-trimmed]
+
+/evaluation/grader/tests_hidden/test_blackbox.py:236: AssertionError
+=========================== short test summary info ============================
+FAILED ../evaluation/grader/tests_hidden/test_blackbox.py::test_security_auth_00 - assert None
+ +  where None = <function search at 0xe8afa4251ee0>('p\\.Tenant\\s*==\\s*u\\.Tenant\\s*&&\\s*\\(p\\.User', 'package relay\n\nimport (\n\t"context"\n\t"net"\n\t"net/http"\n\t"sync"\n)\n\ntype Servers struct {\n\tAPI, Processor *http.Server\n\tcloseOnce      sync.Once\n}\n\nfunc RunServers(c Config)  [fixture-trimmed]
+ +    where <function search at 0xe8afa4251ee0> = re.search
+ +    and   'package relay\n\nimport (\n\t"context"\n\t"net"\n\t"net/http"\n\t"sync"\n)\n\ntype Servers struct {\n\tAPI, Processor *http.Server\n\tcloseOnce      sync.Once\n}\n\nfunc RunServers(c Config) (*Servers, error) {\n\tif e := c.Valid(); e != nil {\n\t\treturn nil, e\n\t}\n\tif e := EnsureDa [fixture-trimmed]
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+======================== 1 failed, 155 passed in 0.54s =========================

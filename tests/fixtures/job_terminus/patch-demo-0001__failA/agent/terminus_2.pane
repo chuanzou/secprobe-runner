@@ -1,0 +1,200 @@
+[?2004h> from pathlib import Path
+[?2004l
+[?2004h> p=Path('relay/multipart.go'); s=p.read_text()
+[?2004l
+[?2004h> old='''\tif err := r.ParseMultipartForm(maxBody); err != nil {\n\t\treturn "", "", nil, errors.New("malformed_multipart")\n\t}\n\tif limited.read > maxBody {\n\t\treturn "", "", nil, errors.New("body_too_large")\n\t}'''
+[?2004l
+[?2004h> new='''\terr := r.ParseMultipartForm(maxBody)\n\tif limited.read > maxBody {\n\t\treturn "", "", nil, errors.New("body_too_large")\n\t}\n\tif err != nil {\n\t\treturn "", "", nil, errors.New("malformed_multipart")\n\t}'''
+[?2004l
+[?2004h> assert old in s
+[?2004l
+[?2004h> p.write_text(s.replace(old,new))
+[?2004l
+[?2004h> 
+[?2004l
+[?2004h> p=Path('relay/lifecycle.go'); s=p.read_text()
+[?2004l
+[?2004h> old='''\tif !p.CanUpload() {\n\t\treturn Upload{}, errors.New("forbidden")\n\t}\n\tif e := l.Meta.Reserve(p.Tenant, v.Size); e != nil {'''
+[?2004l
+[?2004h> new='''\tif !p.CanUpload() {\n\t\treturn Upload{}, errors.New("forbidden")\n\t}\n\tchecked, err := ValidateImage(name, v.MediaType, v.Bytes)\n\tif err != nil || checked.Digest != v.Digest || checked.Size != v.Size || checked.MediaType != v.MediaType {\n\t\treturn Upload{}, errors.New("type_rejected")\n\t}\n\tv = checked\n\tif e := l.Meta.Reserve(p.Tenant, v.Size); e != nil {'''
+[?2004l
+[?2004h> assert old in s
+[?2004l
+[?2004h> s=s.replace(old,new)
+[?2004l
+[?2004h> old='''\tif e = l.Store.PublishInert(id); e != nil {\n\t\treturn Upload{}, errors.New("storage_failure")\n\t}\n\treturn l.Meta.Transition(id, StatePublished, func(x Upload) bool { return x.Tenant == p.Tenant && x.Digest == v.Digest })'''
+[?2004l
+[?2004h> new='''\tif e = l.Store.PublishInert(id); e != nil {\n\t\treturn Upload{}, errors.New("storage_failure")\n\t}\n\tpublished, e := l.Store.Read(id, true)\n\tif e != nil {\n\t\tl.Store.Remove(id)\n\t\treturn Upload{}, errors.New("revalidation_failed")\n\t}\n\tpost, e := ValidateImage(u.Filename, u.MediaType, published)\n\tif e != nil || post.Digest != u.Digest || post.Size != u.Size || post.MediaType != u.MediaType {\n\t\tl.Store.Remove(id)\n\t\treturn Upload{}, errors.New("revalidation_failed")\n\t}\n\tupdated, e := l.Meta.Transition(id, StatePublished, func(x Upload) bool { return x.Tenant == p.Tenant && x.Digest == post.Digest && x.Size == post.Size && x.Policy == PolicyVersion })\n\tif e != nil {\n\t\tl.Store.Remove(id)\n\t\treturn Upload{}, e\n\t}\n\treturn updated, nil'''
+[?2004l
+[?2004h> assert old in s
+[?2004l
+[?2004h> p.write_text(s.replace(old,new))
+[?2004l
+[?2004h> 
+[?2004l
+[?2004h> p=Path('relay/processor.go'); s=p.read_text()
+[?2004l
+[?2004h> old='''\tif _, e = ValidateImage(u.Filename, u.MediaType, b); e != nil {\n\t\treturn Upload{}, nil, e\n\t}\n\treturn u, b, nil'''
+[?2004l
+[?2004h> new='''\tv, e := ValidateImage(u.Filename, u.MediaType, b)\n\tif e != nil || v.Digest != u.Digest || v.Size != u.Size || v.MediaType != u.MediaType {\n\t\treturn Upload{}, nil, errors.New("revalidation_failed")\n\t}\n\treturn u, b, nil'''
+[?2004l
+[?2004h> assert old in s
+[?2004l
+[?2004h> p.write_text(s.replace(old,new))
+[?2004l
+[?2004h> PY
+[?2004l
+[?2004h[01;32magent@97cbddbe72be[00m:[01;34m/app[00m$ cat >> relay/security_test.go <<'EOF'
+[?2004l
+[?2004h> 
+[?2004l
+[?2004h> func TestCreateUploadRejectsForgedValidationWithoutSideEffects(t *testing.T) {
+[?2004l
+[?2004h> d := t.TempDir()
+[?2004l
+[?2004h> s, err := NewStorage(filepath.Join(d, "store"))
+[?2004l
+[?2004h> if err != nil { t.Fatal(err) }
+[?2004l
+[?2004h> m, err := NewMetadata(filepath.Join(d, "meta"), 1000, 2)
+[?2004l
+[?2004h> if err != nil { t.Fatal(err) }
+[?2004l
+[?2004h> v := Validated{Bytes: []byte("#!/bin/sh"), MediaType: "image/png", Digest: Digest([]byte("#!/bin/sh")), Size: 9}
+[?2004l
+[?2004h> if _, err = NewLifecycle(m, s).CreateUpload(Principal{Tenant: "t", User: "u"}, v, "picture.png"); err == nil {
+[?2004l
+[?2004h> 
+API_CONTRACT.md            Dockerfile.upload_api      api-contract.json          go.mod                     tests/
+Dockerfile                 Makefile                   cmd/                       integration_tests/         
+Dockerfile.file_processor  README.md                  compose.yaml               relay/                     
+> t.Fatal("forged validation accepted")
+[?2004l
+[?2004h> }
+[?2004l
+[?2004h> if used, count := m.Quota("t"); used != 0 || count != 0 { t.Fatalf("quota leaked: %d/%d", used, count) }
+[?2004l
+[?2004h> if len(m.All()) != 0 { t.Fatal("metadata side effect") }
+[?2004l
+[?2004h> entries, err := os.ReadDir(s.Quarantine)
+[?2004l
+[?2004h> if err != nil || len(entries) != 0 { t.Fatalf("storage side effect: %v, %d entries", err, len(entries)) }
+[?2004l
+[?2004h> }
+[?2004l
+[?2004h> EOF
+[?2004l
+[?2004h[01;32magent@97cbddbe72be[00m:[01;34m/app[00m$ 
+[?2004l
+[?2004h[01;32magent@97cbddbe72be[00m:[01;34m/app[00m$ gofmt -w relay/multipart.go relay/lifecycle.go relay/processor.go relay/security_test.go
+[?2004l
+[?2004h[01;32magent@97cbddbe72be[00m:[01;34m/app[00m$ make all && make test
+[?2004l
+go build ./...
+go test ./...
+?   	quarantine-relay/cmd/file_processor	[no test files]
+?   	quarantine-relay/cmd/upload_api	[no test files]
+ok  	quarantine-relay/relay	0.005s
+[?2004h[01;32magent@97cbddbe72be[00m:[01;34m/app[00m$ go vet ./...
+[?2004l
+# quarantine-relay/relay
+# [quarantine-relay/relay]
+relay/observability.go:22:81: return copies lock value: quarantine-relay/relay.Metrics contains sync.Mutex
+[?2004h[01;32magent@97cbddbe72be[00m:[01;34m/app[00m$ python3 tests/test_api_contract.py
+[?2004l
+[?2004h[01;32magent@97cbddbe72be[00m:[01;34m/app[00m$ python3 tests/test_api_contract.py && go test ./relay -run 'TestRejects|TestMultipart|TestStorage|TestProcessor|TestCreateUpload' -count=1
+[?2004l
+ok  	quarantine-relay/relay	0.002s
+[?2004h[01;32magent@97cbddbe72be[00m:[01;34m/app[00m$ find . -maxdepth 2 -type f \( -name '*.tmp' -o -name '*.out' -o -name '*.test' \) -print
+[?2004l
+[?2004h[01;32magent@97cbddbe72be[00m:[01;34m/app[00m$ cat relay/observability.go
+[?2004l
+package relay
+
+import (
+	"fmt"
+	"sync"
+	"time"
+)
+
+type Metrics struct {
+	mu                                               sync.Mutex
+	Accepted, Rejected, Denied, Published, Processed int
+	Bytes                                            int64
+	Started                                          time.Time
+}
+
+func NewMetrics() *Metrics           { return &Metrics{Started: time.Now().UTC()} }
+func (m *Metrics) Accept(n int64)    { m.mu.Lock(); m.Accepted++; m.Bytes += n; m.mu.Unlock() }
+func (m *Metrics) Reject()           { m.mu.Lock(); m.Rejected++; m.mu.Unlock() }
+func (m *Metrics) Deny()             { m.mu.Lock(); m.Denied++; m.mu.Unlock() }
+func (m *Metrics) Publish()          { m.mu.Lock(); m.Published++; m.mu.Unlock() }
+func (m *Metrics) Process()          { m.mu.Lock(); m.Processed++; m.mu.Unlock() }
+func (m *Metrics) Snapshot() Metrics { m.mu.Lock(); defer m.mu.Unlock(); return *m }
+func (m *Metrics) String() string {
+	x := m.Snapshot()
+	return fmt.Sprintf("accepted=%d rejected=%d denied=%d published=%d processed=%d bytes=%d", x.Accepted, x.Rejected, x.Denied, x.Published, x.Processed, x.Bytes)
+}
+func (m *Metrics) Healthy() bool { return time.Since(m.Started) < 24*time.Hour }
+func (m *Metrics) Reset()        { m.mu.Lock(); *m = Metrics{Started: time.Now().UTC()}; m.mu.Unlock() }
+
+// Normative declaration spellings retained for the public contract.
+// func (m *Metrics) Accept(n int64)
+// func (m *Metrics) Deny()
+// func (m *Metrics) Healthy()bool
+// type Metrics struct
+// func NewMetrics()*Metrics
+// func (m *Metrics) Process()
+// func (m *Metrics) Publish()
+// func (m *Metrics) Reject()
+// func (m *Metrics) Reset()
+// func (m *Metrics) Snapshot()Metrics
+// func (m *Metrics) String()string
+[?2004h[01;32magent@97cbddbe72be[00m:[01;34m/app[00m$ python3 - <<'PY'
+[?2004l
+[?2004h> from pathlib import Path
+[?2004l
+[?2004h> p=Path('relay/observability.go'); s=p.read_text()
+[?2004l
+[?2004h> s=s.replace('func (m *Metrics) Snapshot() Metrics { m.mu.Lock(); defer m.mu.Unlock(); return *m }', '''func (m *Metrics) Snapshot() Metrics {
+[?2004l
+[?2004h> m.mu.Lock()
+[?2004l
+[?2004h> defer m.mu.Unlock()
+[?2004l
+[?2004h> return Metrics{Accepted: m.Accepted, Rejected: m.Rejected, Denied: m.Denied, Published: m.Published, Processed: m.Processed, Bytes: m.Bytes, Started: m.Started}
+[?2004l
+[?2004h> }''')
+[?2004l
+[?2004h> s=s.replace('func (m *Metrics) Reset()        { m.mu.Lock(); *m = Metrics{Started: time.Now().UTC()}; m.mu.Unlock() }', '''func (m *Metrics) Reset() {
+[?2004l
+[?2004h> m.mu.Lock()
+[?2004l
+[?2004h> defer m.mu.Unlock()
+[?2004l
+[?2004h> m.Accepted, m.Rejected, m.Denied, m.Published, m.Processed = 0, 0, 0, 0, 0
+[?2004l
+[?2004h> m.Bytes = 0
+[?2004l
+[?2004h> m.Started = time.Now().UTC()
+[?2004l
+[?2004h> }''')
+[?2004l
+[?2004h> p.write_text(s)
+[?2004l
+[?2004h> PY
+[?2004l
+[?2004h[01;32magent@97cbddbe72be[00m:[01;34m/app[00m$ gofmt -w relay/observability.go
+[?2004l
+[?2004h[01;32magent@97cbddbe72be[00m:[01;34m/app[00m$ go vet ./...
+[?2004l
+[?2004h[01;32magent@97cbddbe72be[00m:[01;34m/app[00m$ make all && make test
+[?2004l
+go build ./...
+go test ./...
+?   	quarantine-relay/cmd/file_processor	[no test files]
+?   	quarantine-relay/cmd/upload_api	[no test files]
+ok  	quarantine-relay/relay	0.009s
+[?2004h[01;32magent@97cbddbe72be[00m:[01;34m/app[00m$ python3 tests/test_api_contract.py
+[?2004l
+[?2004h[01;32magent@97cbddbe72be[00m:[01;34m/app[00m$ 
